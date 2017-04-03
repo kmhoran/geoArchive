@@ -1,4 +1,3 @@
-/* GeoArchive project
-*
-*   Display historic maps on modern geoSpacial tilesets
-*/
+/* GeoArchive project */
+
+   Display historic maps on modern geoSpacial tilesets
