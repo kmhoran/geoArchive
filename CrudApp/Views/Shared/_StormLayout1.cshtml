@@ -1,0 +1,222 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Mapp - A temporary thing</title>
+    <!-- Bootstrap -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+
+    <!-- Theme -->
+    <link href="~/Content/Theme/flexslider.css" rel="stylesheet" />
+    <link href="~/Content/Theme/animate.css" rel="stylesheet" />
+    <link href="~/Content/Theme/style.css" rel="stylesheet" />
+    <link href="~/Content/Theme/custom.css" rel="stylesheet" />
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    @RenderSection("Meta", false)
+</head>
+<body data-spy="scroll" ng-app="mapModule">
+    <!-- Static navbar -->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+        <div class="container">
+
+            <div class="navbar-header">
+
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-controls="navbar">
+
+                    <span class="sr-only">Toggle navigation</span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                    <span class="icon-bar"></span>
+
+                </button>
+
+                <a class="navbar-brand" href="~/Home/Index">Mapp</a>
+
+            </div>
+
+            <div id="navbar" class="navbar-collapse collapse">
+
+                <ul class="nav navbar-nav navbar-right scroll-to">
+
+                    <li class="active"><a href="~/Home/Index">Home</a></li>
+
+                    <li><a href="~/Home/GoLocal">Go Local</a></li>
+
+                    <li><a href="~/Home/Search">Search Archive</a></li>
+
+                    <li><a href="~/Home/Contribute">Contribute</a></li>
+
+                </ul>
+
+            </div><!--/.nav-collapse -->
+
+        </div><!--/.container-fluid -->
+
+    </nav><!--navigation-->
+
+    <div id="render_body" ng-route>
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-md-3">
+
+                    <h3>Lorem</h3>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3>Lorem</h3>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <h3>Lorem</h3>
+
+                    <ul class="list-unstyled">
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                        <li><a href="#">Lorem Ipsum</a></li>
+
+                    </ul>
+
+                </div>
+
+                <div class="col-md-3">
+
+                    <ul class="list-inline">
+
+                        <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+
+                    </ul>
+
+                    <p class="phone">+000225 882</p>
+
+                    <p>
+
+                        Simple dummy text of the printing and typesetting
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            <span class="copyright">&copy; 2017 All Rights Reserved </span>
+
+        </div>
+
+    </footer>
+
+    <!-- jQuery -->
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/jquery-ui.js"></script>
+
+    <!-- Bootstrap -->
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+
+
+
+    <!-- Theme -->
+    <script src="~/Scripts/Theme/jquery.flexslider-min.js"></script>
+    <script src="~/Scripts/Theme/scripts.js"></script>
+    <script src="~/Scripts/Theme/wow.min.js"></script>
+
+    <script>
+        wow = new WOW(
+                {
+                    animateClass: 'animated',
+                    offset: 100,
+                    mobile: true
+                }
+        );
+        wow.init();
+    </script>
+
+    <!-- ProjectJS -->
+    <script src="~/Scripts/project.js"></script>
+
+    <!-- Angular -->
+    <script src="~/Scripts/bower_components/angular/angular.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
+    <script>
+        project.APPNAME = "mapModule";
+
+        (function () {
+            "use strict"
+            angular.module(project.APPNAME, ['ngRoute']);
+        })();
+    </script>
+    <!-- IP service -->
+    <script src="~/Scripts/services/project.services.IP.js"></script>
+    <script src="~/Scripts/App/IPLocation/Services/IpLocationService.js"></script>
+
+    <!-- Angular Document Service -->
+    <script src="~/Scripts/App/Documents/Services/documentHttpService.js"></script>
+
+
+    <!-- ## Page Scripts ## -->
+    @RenderSection("Scripts", false)
+</body>
+
+</html>

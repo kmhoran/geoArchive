@@ -1,0 +1,63 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_StormLayout1.cshtml";
+}
+
+@section Meta{
+    
+<link href="~/Scripts/bower_components/chosen/chosen.css" rel="stylesheet" />
+<link href="~/Scripts/bower_components/angular-chosen-localytics/chosen-spinner.css" rel="stylesheet" />
+    }
+
+<div class="page-title">
+
+    <div class="container">
+
+        <div class="page-title-overlay"></div>
+
+        <h1>Search Archive</h1>
+
+    </div>
+
+</div>
+
+<h2>Search</h2>
+<div ng-controller="searchController as SrchC">
+    <select chosen
+            allow-single-deselect="true"
+            placeholder-text-single="'Choose Your Own Adventure'"
+            no-results-text="'Tough luck'"
+            ng-model="SrchC.selected"
+            ng-options="value for (key,value) in SrchC.searchList"
+            style="width:200px;">
+        <option value=""></option>
+    </select>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/bower_components/chosen/chosen.js"></script>
+    <script src="~/Scripts/bower_components/angular-chosen-localytics/dist/angular-chosen.js"></script>
+
+    <script>
+        (function () {
+            "use strict";
+
+            angular.module(project.APPNAME)
+            .controller("searchController", SearchController);
+
+            SearchController.$inject = ["$scope"];
+
+            function SearchController($scope) {
+
+                // injection
+                var vm = this;
+                vm.$scope = $scope;
+
+                // properties
+                vm.searchList = [{ value: "one" }, { value: "two" }, { value: "three" }];
+                vm.selection = null;
+
+            }
+        })();
+    </script>
+}

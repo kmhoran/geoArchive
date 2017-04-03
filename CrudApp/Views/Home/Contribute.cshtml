@@ -1,0 +1,165 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_StormLayout1.cshtml";
+}
+
+@section Meta{
+    <!-- Leaflet -->
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <link href="~/Content/Leaflet/leafletStyles.css" rel="stylesheet" />
+    <link href="~/Content/Leaflet/leaflet.toolbar.css" rel="stylesheet" />
+    <link href="~/Content/Leaflet/opacitySlider.css" rel="stylesheet" />
+    <link href="~/Content/Leaflet/leaflet.distortableimage.css" rel="stylesheet" />
+}
+<!-- Map -->
+<div ng-controller="contributeController as CrbC">
+    <div class="map-title">
+
+        <div class="map-title-overlay"></div>
+
+        <div class="container">
+
+            <h1>Contribute</h1>
+
+        </div>
+
+    </div>
+    <br />
+    <div class="width-full">
+        <div class="row">
+
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+                <div class="lean-left-1">
+                    <form ng-class="{'form-group':true, 'form-group-lg':true, 'has-error': !CrbC.validResource , 'has-success': CrbC.validResource}">
+                        <label for="doctype-map">
+                            <input type="radio" id="doctype-map" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="map" ng-checked />Map 
+                        </label>
+                        <label for="doctype-picture">
+                            <input type="radio" id="doctype-picture" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="picture" />Picture 
+                        </label>
+                        <label for="doctype-video">
+                            <input type="radio" id="doctype-video" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="video" disabled />Video
+                        </label>
+                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Image Url" />
+                    </form>
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div id="placeholder" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="!CrbC.validResource">
+                <div id="container">
+                    <div id="background" class="text-center">
+                        <div ng-if="CrbC.documentType == 'map'">
+                            <div class="fa fa-map background-icon"></div>
+                            <h1>Paste Map URL in the Field Above</h1>
+                        </div>
+                        <div ng-if="CrbC.documentType == 'picture' && !CrbC.validResource">
+
+                            <div class="fa fa-picture-o background-icon"></div>
+                            <h1>Paste Picture URL in the Field Above</h1>
+                        </div>
+                        <div ng-if="CrbC.documentType == 'video'">
+                            <div class="fa fa-video-camera background-icon"></div>
+                            <h1>Paste Video URL in the Field Above</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="CrbC.documentType == 'picture' && CrbC.validResource">
+                <div class="contribute-picture pading-left-1">
+                    <button type="button" class="btn btn-info margin-bottom-1"><span class="fa fa-map-marker"></span> Plot on Map</button>
+                    <br/>
+                    <p class="text-muted">or</p>
+                    <form id="formMarkerLatLng" class="form-group">
+                        <label for="marker-lat">Latitude</label>
+                        <input type="number" id="marker-lat" class="form-inline" max="90" min="-90" ng-model="CrbC.markerLatLng.lat" />
+                        <label for="marker-lng">Longitude</label>
+                        <input type="number" id="marker-lng" class="form-inline" max="180" min="-180" ng-model="CrbC.markerLatLng.lng" />
+
+                    </form>
+                    <div id="picture-container">
+
+                        <img id="contribution-picture" ng-src="{{CrbC.resourceUrl}}" />
+                    </div>
+                </div>
+            </div>
+            <!--ng-show="CrbC.documentType=='map' && CrbC.validResource"-->
+            <div id="map" class="map-display col-lg-8 col-md-8 col-sm-12 col-xs-12" ></div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <h2>Document Details</h2>
+                <p>{{CrbC.documentDeatils.title}}</p>
+                <form class="form-group">
+                    <input class="form-control" ng-model="CrbC.documentDeatils.title" type="text" placeholder="*Document Title" />
+                    <br />
+                    <input class="form-control" type="text" placeholder="*Year (yyyy)" />
+                    <br />
+                    <input class="form-control" type="text" placeholder="*Your Name" />
+                    <br />
+                    <input class="form-control" type="text" placeholder="*Source Instuturion (eg. Library of Congress)" />
+                    <br />
+                    <textarea class="form-control" placeholder="*Give us an idea of what we're looking at." rows="5"></textarea>
+                    <br />
+                    <button class="btn btn-success" type="submit"><span class="fa fa-paper-plane-o"></span>  Submit Document</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br />
+</div>
+
+
+
+
+@section Scripts{
+
+    <!-- Leaflet core -->
+    <script src="~/Scripts/leaflet/leaflet-src.js"></script>
+
+    <!-- Leaflet tools -->
+    <script src="~/Scripts/leaflet/leaflet.rotateimage.js"></script>
+
+    <script src="~/Scripts/leaflet/leaflet.toolbar.js"></script>
+
+    <script src="~/Scripts/leaflet/noMap.js"></script>
+    <script src="~/Scripts/leaflet/tilesets.js"></script>
+
+    <script src="~/Scripts/leaflet/mapEditTools.js"></script>
+
+    <script src="~/Scripts/App/LeafletJS/Services/LeafletMapService.js"></script>
+
+    <script src="~/Scripts/App/Pages/Controllers/ContributeController.js"></script>
+
+    @*<script src="~/Scripts/services/project.services.Leaflet.js"></script>*@
+
+    @*<script>
+            project.page.startUp = function () {
+
+                // Get User's location
+                project.services.IP.getLocation(project.page.onGetLocationSuccess, project.page.onAjaxError);
+
+                $("body").find(".leaflet-image-layer").fadeOut();
+            };
+
+            // .....................................................................................
+            // If user location retrieved successfully
+            project.page.onGetLocationSuccess = function (locationObject) {
+                // Centers display map on recieved latLng coordinates
+                var latLng = {
+                    lat: locationObject.lat,
+                    lng: locationObject.lon
+                };
+
+                project.services.Leaflet.editMap(latLng);
+            }
+
+            // .....................................................................................
+
+            project.page.onAjaxError = function (data) {
+                console.log("An error occured: ", data);
+            }
+
+        </script>*@
+}
