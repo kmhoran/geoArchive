@@ -9,8 +9,11 @@
 
    - Contribution tool
    
-   *View*
-   https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml
-   *ngController*
-   https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js
+   [Contribution View] 
+   [Contribution Controller]
+   
+   
+   [Contribution View]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
+  
+  [Contribution Controller]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
    
