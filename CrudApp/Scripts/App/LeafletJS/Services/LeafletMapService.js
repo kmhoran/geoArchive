@@ -32,6 +32,9 @@
                 throw UserException("DisplayMap: invalid Request");
             }
 
+            // Clear map space.
+            _removeMap();
+
             // Set tilesets;
             var tilesets = _injectTileSets();
             console.log("tilesets: ", tilesets);
@@ -152,6 +155,9 @@
 
             // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Prepare map
+
+            // Clear map space.
+            _removeMap();
 
             // Inject Tile Sets
             var tilesets = _injectTileSets();

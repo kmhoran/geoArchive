@@ -27,6 +27,7 @@
     </div>
     <br />
     <div class="width-full">
+        <!--URL Input  -->
         <div class="row">
 
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
@@ -41,67 +42,87 @@
                         <label for="doctype-video">
                             <input type="radio" id="doctype-video" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="video" disabled />Video
                         </label>
-                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Image Url" />
+                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Paste Image Url" />
                     </form>
                 </div>
             </div>
         </div>
-        <hr />
-        <div class="row">
-            <div id="placeholder" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="!CrbC.validResource">
-                <div id="container">
-                    <div id="background" class="text-center">
-                        <div ng-if="CrbC.documentType == 'map'">
-                            <div class="fa fa-map background-icon"></div>
-                            <h1>Paste Map URL in the Field Above</h1>
-                        </div>
-                        <div ng-if="CrbC.documentType == 'picture' && !CrbC.validResource">
+        <!-- End URL Input-->
 
-                            <div class="fa fa-picture-o background-icon"></div>
-                            <h1>Paste Picture URL in the Field Above</h1>
-                        </div>
-                        <div ng-if="CrbC.documentType == 'video'">
-                            <div class="fa fa-video-camera background-icon"></div>
-                            <h1>Paste Video URL in the Field Above</h1>
+        <hr />
+
+        <!-- LatLng Input for for non-map media -->
+        <div id="lan-lng-form" class="row" ng-if="!(CrbC.documentType == 'map') && CrbC.validResource">
+            <div class="contribute-picture pading-left-1">
+                <button type="button" class="btn btn-info margin-bottom-1"><span class="fa fa-map-marker"></span> Plot on Map</button>
+                <br />
+                <p class="text-muted">or</p>
+                <form id="formMarkerLatLng" class="form-group">
+                    <label for="marker-lat">Latitude</label>
+                    <input type="number" id="marker-lat" class="form-inline" max="90" min="-90" ng-model="CrbC.markerLatLng.lat" />
+                    <label for="marker-lng">Longitude</label>
+                    <input type="number" id="marker-lng" class="form-inline" max="180" min="-180" ng-model="CrbC.markerLatLng.lng" />
+
+                </form>
+            </div>
+            <hr/>
+        </div>
+        <!-- End LatLng Input for for non-map media -->
+
+        <div class="row">
+            <!-- Display Screen -->
+            <div id="display-screen">
+
+                <!-- No-image display -->
+                <div id="placeholder" class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="!CrbC.validResource">
+                    <div id="container">
+                        <div id="background" class="text-center">
+                            <div ng-if="CrbC.documentType == 'map'">
+                                <div class="fa fa-map background-icon"></div>
+                                <h1>Paste Map URL in the Field Above</h1>
+                            </div>
+                            <div ng-if="CrbC.documentType == 'picture' && !CrbC.validResource">
+
+                                <div class="fa fa-picture-o background-icon"></div>
+                                <h1>Paste Picture URL in the Field Above</h1>
+                            </div>
+                            <div ng-if="CrbC.documentType == 'video'">
+                                <div class="fa fa-video-camera background-icon"></div>
+                                <h1>Paste Video URL in the Field Above</h1>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="CrbC.documentType == 'picture' && CrbC.validResource">
-                <div class="contribute-picture pading-left-1">
-                    <button type="button" class="btn btn-info margin-bottom-1"><span class="fa fa-map-marker"></span> Plot on Map</button>
-                    <br />
-                    <p class="text-muted">or</p>
-                    <form id="formMarkerLatLng" class="form-group">
-                        <label for="marker-lat">Latitude</label>
-                        <input type="number" id="marker-lat" class="form-inline" max="90" min="-90" ng-model="CrbC.markerLatLng.lat" />
-                        <label for="marker-lng">Longitude</label>
-                        <input type="number" id="marker-lng" class="form-inline" max="180" min="-180" ng-model="CrbC.markerLatLng.lng" />
 
-                    </form>
+                <!-- Picture Display -->
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" ng-if="CrbC.documentType == 'picture' && CrbC.validResource">
                     <div id="picture-container">
-
                         <img id="contribution-picture" ng-src="{{CrbC.resourceUrl}}" />
                     </div>
                 </div>
-            </div>
-            <!--ng-show="CrbC.documentType=='map' && CrbC.validResource"-->
-            <div id="map" class="map-display col-lg-8 col-md-8 col-sm-12 col-xs-12"></div>
 
+
+
+                <!-- Map Display -->
+                <div id="map" class="map-display col-lg-8 col-md-8 col-sm-12 col-xs-12 " ng-class="{'hide-map': !(CrbC.documentType=='map') || !CrbC.validResource}"></div>
+            </div>
+            <!-- End Display Screen -->
+
+            <!-- Doc details form -->
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <h2>Document Details</h2>
-                
+
                 <form name="detailsForm" class="details-form" ng-submit="CrbC.submitForm(detailsForm.$valid)" novalidate disable>
-                    
+
                     <!-- Title -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.title.$invalid && !detailsForm.title.$pristine}">
-                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDeatils.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required/>
+                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDeatils.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required />
                         <p ng-show="detailsForm.title.$invalid && !detailsForm.title.$pristine" class="help-block">A title is required.</p>
                     </div>
-                    
+
                     <!-- Year -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.year.$invalid && !detailsForm.year.$pristine}">
-                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDeatils.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required/>
+                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDeatils.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required />
                         <p ng-show="detailsForm.year.$invalid && !detailsForm.year.$pristine && !detailsForm.year.$error.min && !detailsForm.year.$error.max" class="help-block">A year is required.</p>
                         <p ng-show="detailsForm.year.$error.min" class="help-block">Your document must be for the Common Era (ie AD).</p>
                         <p ng-show="detailsForm.year.$error.max" class="help-block">Your document seems a bit too modern.</p>
@@ -109,19 +130,19 @@
 
                     <!-- User Name -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine}">
-                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDeatils.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required/>
+                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDeatils.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required />
                         <p ng-show="detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine" class="help-block">Your name is required, even if it's just a nickname.</p>
                     </div>
 
                     <!-- Source -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine}">
-                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDeatils.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required/>
+                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDeatils.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required />
                         <p ng-show="detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine" class="help-block">A soururce name is required.</p>
                     </div>
 
                     <!-- Source Website-->
-                    <input name="institutionUrl" class="form-control" type="text" ng-model="CrbC.documentDeatils.institutionUrl" placeholder="Source Homepage (eg. https://www.loc.gov)" ng-disabled="!CrbC.validResource"/>
-                    <br/>
+                    <input name="institutionUrl" class="form-control" type="text" ng-model="CrbC.documentDeatils.institutionUrl" placeholder="Source Homepage (eg. https://www.loc.gov)" ng-disabled="!CrbC.validResource" />
+                    <br />
 
                     <!-- Description -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.description.$invalid && !detailsForm.description.$pristine}">
@@ -131,10 +152,13 @@
                     <button class="btn btn-success" type="submit" ng-disabled="detailsForm.$invalid || !CrbC.validResource"><span class="fa fa-paper-plane-o"></span>  Submit Document</button>
                 </form>
             </div>
+            <!-- End doc details form -->
         </div>
     </div>
-    <br />
+    <br/>
 </div>
+
+
 
 
 

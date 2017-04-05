@@ -291,6 +291,17 @@ figure:hover figcaption h2 {
     width: 33%;
     border: #aaa solid 1px;
 }
+
+#display-screen{
+    position: relative;
+}
+
+#map.hide-map {
+    position: absolute;
+    top:0;
+    z-index: -1;
+    opacity:0;
+}
 .details-form input[type=number]::-webkit-inner-spin-button, 
 .details-form input[type=number]::-webkit-outer-spin-button { 
     -webkit-appearance: none;
