@@ -11,6 +11,10 @@
     position:relative;
     left: 1em;
 }
+.lean-left-2{
+    position:relative;
+    left: 2em;
+}
 
 .pading-left-1{
     padding-left:1em;
