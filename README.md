@@ -5,7 +5,8 @@
    Notable files :
    
    - Angularized LeafletJS Service:
-      | Feature | File |
+   
+   | Feature | File |
    | ------ | ------ | 
    | Leaflet Service | [Scripts/App/LeafletJS/Services/LeafletMapService.js] |
 
