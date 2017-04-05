@@ -9,11 +9,13 @@
 
    - Contribution tool
    
-   [Contribution View] 
-   [Contribution Controller]
+   | Feature | File |
+   | ------ | ------ | 
+   | Contribute View | [Views/Home/Contribute.cshtml] [CrbV] |
+   | Contribution Controller | [Scripts/App/Pages/Controllers/ContributeController.js] [CrbC] |
    
    
-   [Contribution View]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
+   [CrbV]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
   
-  [Contribution Controller]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
+  [CrbC]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
    
