@@ -28,6 +28,7 @@
         //    contributor: null,
         //    description: null,
         //    sourceInstitution: null,
+        //    institutionUrl: null,
         //    resourceUrl: null
         //};
 
@@ -35,6 +36,7 @@
         //vm.verifyResource = _verifyResource;
         vm.displayResource = _displayResource;
         vm.resetResource = _resetResource;
+        vm.submitform = _submitForm;
 
 
         // Startup functions
@@ -96,14 +98,14 @@
         // .........................................................................................
 
         function _displayPicture() {
-
+            // Do something
         }
 
 
         // .........................................................................................
 
         function _displayVideo() {
-
+            // Do something
         }
 
 
@@ -115,6 +117,18 @@
             vm.validResource = false;
             vm.$leafletMapService.removeMap();
         }
+
+
+
+        // .........................................................................................
+
+        function _submitForm(isValid) {
+            if (isValid) {
+                console.log("data is valid! go save this object -> ");
+            } else {
+                console.log("form submitted with invalid data :(")
+            }
+        };
 
 
         // .........................................................................................

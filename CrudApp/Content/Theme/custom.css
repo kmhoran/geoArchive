@@ -291,5 +291,13 @@ figure:hover figcaption h2 {
     width: 33%;
     border: #aaa solid 1px;
 }
+.details-form input[type=number]::-webkit-inner-spin-button, 
+.details-form input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0; 
+}
+
 
 /* End Contribute */
