@@ -11,11 +11,11 @@
    
    | Feature | File |
    | ------ | ------ | 
-   | Contribute View | [Views/Home/Contribute.cshtml] [CrbV] |
-   | Contribution Controller | [Scripts/App/Pages/Controllers/ContributeController.js] [CrbC] |
+   | Contribute View | [Views/Home/Contribute.cshtml] |
+   | Contribution Controller | [Scripts/App/Pages/Controllers/ContributeController.js] |
    
    
-   [CrbV]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
+   [Views/Home/Contribute.cshtml]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
   
-  [CrbC]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
+  [Scripts/App/Pages/Controllers/ContributeController.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
    
