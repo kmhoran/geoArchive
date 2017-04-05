@@ -5,15 +5,19 @@
    Notable files :
    
    - Angularized LeafletJS Service:
-   https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/LeafletJS/Services/LeafletMapService.js
+      | Feature | File |
+   | ------ | ------ | 
+   | Leaflet Service | [Scripts/App/LeafletJS/Services/LeafletMapService.js] |
 
    - Contribution tool
    
    | Feature | File |
    | ------ | ------ | 
    | Contribute View | [Views/Home/Contribute.cshtml] |
-   | Contribution Controller | [Scripts/App/Pages/Controllers/ContributeController.js] |
+   | Contribute Controller | [Scripts/App/Pages/Controllers/ContributeController.js] |
    
+   
+   [Scripts/App/LeafletJS/Services/LeafletMapService.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/LeafletJS/Services/LeafletMapService.js>
    
    [Views/Home/Contribute.cshtml]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
   
