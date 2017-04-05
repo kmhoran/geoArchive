@@ -8,8 +8,9 @@
    https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/LeafletJS/Services/LeafletMapService.js
 
    - Contribution tool
-   View
+   
+   *View*
    https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml
-   ngController
+   *ngController*
    https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js
    
