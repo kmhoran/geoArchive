@@ -17,6 +17,7 @@
    | ------ | ------ | 
    | Contribute View | [Views/Home/Contribute.cshtml] |
    | Contribute Controller | [Scripts/App/Pages/Controllers/ContributeController.js] |
+   | Select Coordinates Modal Controller | [Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js] |
    
    ### Todos
    
@@ -34,3 +35,4 @@
   
   [Scripts/App/Pages/Controllers/ContributeController.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
    
+   [Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js>
