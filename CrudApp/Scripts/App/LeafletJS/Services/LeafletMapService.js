@@ -12,15 +12,23 @@
     LeafletMapService.$inject = [];
 
     function LeafletMapService() {
+        // Public values
         var service = {};
 
+        // Private values
+        var secret = {};
+
         // Properties
-        service.map;
+        secret.map;
+        secret.selectCoords = null;
 
         // Public Methods
         service.editMap = _editMap;
         service.displayMap = _displayMap;
         service.removeMap = _removeMap;
+        service.selectCoordinates = _selectCoordinates;
+        service.removeSelectedCoords = _removeSelectedCoords;
+        service.getSelectedCoords = _getSelectedCoords;
 
         return service;
 
@@ -43,7 +51,7 @@
             var initialBounds = _setInitialBounds(latLng);
 
 
-            service.map = L.map('map', {
+            secret.map = L.map('map', {
                 // Map default settings
                 center: [latLng.lat, latLng.lng],
                 zoom: 10,
@@ -51,7 +59,7 @@
             });
 
             // Fit map to edit image, and give a little room to work
-            service.map.fitBounds(L.latLngBounds(initialBounds).pad(0.1));
+            secret.map.fitBounds(L.latLngBounds(initialBounds).pad(0.1));
 
 
             // Initialize image to Edit
@@ -66,7 +74,7 @@
 
             };
 
-            var editImg = new L.RotateImageOverlay(editImgUrl, editImgBounds, editImgOptions).addTo(service.map);
+            var editImg = new L.RotateImageOverlay(editImgUrl, editImgBounds, editImgOptions).addTo(secret.map);
 
             // .................................................................................
 
@@ -83,7 +91,7 @@
             });
 
             // Update image bounds on marker move
-            dragMeTop.on("dragend", function echoLatLng(e) {
+            dragMeTop.on("dragend", function updateDMTop(e) {
                 var newLatLng = this.getLatLng();
 
                 var oldLatLng = dragMeBottom.getLatLng();
@@ -100,7 +108,7 @@
             });
 
 
-            dragMeBottom.on("dragend", function echoLatLng(e) {
+            dragMeBottom.on("dragend", function updateDMBottom(e) {
                 var newLatLng = this.getLatLng();
 
                 var oldLatLng = dragMeTop.getLatLng();
@@ -117,8 +125,8 @@
             });
 
             // Add markers to map 
-            dragMeTop.addTo(service.map);
-            dragMeBottom.addTo(service.map);
+            dragMeTop.addTo(secret.map);
+            dragMeBottom.addTo(secret.map);
 
             // .................................................................................
 
@@ -126,17 +134,17 @@
             var baseMaps = tilesets.baseMaps;
 
 
-            L.control.layers(baseMaps).addTo(service.map);
+            L.control.layers(baseMaps).addTo(secret.map);
             // .................................................................................
 
             //Set opacity controls
             var higherOpacity = new L.Control.higherOpacity();
-            service.map.addControl(higherOpacity);
+            secret.map.addControl(higherOpacity);
             var lowerOpacity = new L.Control.lowerOpacity();
-            service.map.addControl(lowerOpacity);
+            secret.map.addControl(lowerOpacity);
 
             var rotation = new L.Control.rotate();
-            service.map.addControl(rotation);
+            secret.map.addControl(rotation);
 
             higherOpacity.setOpacityLayer(editImg);
             lowerOpacity.setOpacityLayer(editImg);
@@ -167,7 +175,7 @@
             var center = bounds.getCenter();
 
             // This assumes the HTML map element has id='map'.
-            service.map = L.map('map', {
+            secret.map = L.map('map', {
                 center: center,
                 zoom: 10,
                 layers: [tilesets.tileset[0]]
@@ -185,21 +193,21 @@
                 "rotate": rotate
             };
 
-            var displayImg = new L.RotateImageOverlay(url, bounds, imgOptions).addTo(service.map);
+            var displayImg = new L.RotateImageOverlay(url, bounds, imgOptions).addTo(secret.map);
 
             // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Set map legend
 
             var baseMaps = tilesets.baseMaps;
-            L.control.layers(baseMaps).addTo(service.map);
+            L.control.layers(baseMaps).addTo(secret.map);
 
             // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             //Set opacity controls
 
             var higherOpacity = new L.Control.higherOpacity();
-            service.map.addControl(higherOpacity);
+            secret.map.addControl(higherOpacity);
             var lowerOpacity = new L.Control.lowerOpacity();
-            service.map.addControl(lowerOpacity);
+            secret.map.addControl(lowerOpacity);
 
             higherOpacity.setOpacityLayer(displayImg);
             lowerOpacity.setOpacityLayer(displayImg);
@@ -215,45 +223,73 @@
                 throw UserException("SelectCoordinates: invalid request");
             }
 
-            // Set tilesets;
+            // Clear map space
+            _removeMap()
+
+            // Inject Tile Sets
             var tilesets = _injectTileSets();
             console.log("tilesets: ", tilesets);
             console.log("latlng: ", latLng);
 
             var initialBounds = _setInitialBounds(latLng);
 
-
-            service.map = L.map('map', {
+            secret.map = L.map('map', {
                 // Map default settings
                 center: [latLng.lat, latLng.lng],
                 zoom: 13,
                 layers: [tilesets.tileset[0]]
             });
-
             
             // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Draggable marker
 
-            var dragMe = L.marker(initialBounds[0], {
+            var dragMe = L.marker(latLng, {
                 draggable: true
             });
 
-            // Add markers to map 
-            dragMe.addTo(service.map);
+            dragMe.on("dragend", function updateSelectCoord(e) {
 
+                var newLatLng = this.getLatLng();
+                secret.selectCoords = newLatLng;
+            });
+
+            // Add markers to map 
+            dragMe.addTo(secret.map);
+
+            secret.selectCoords = dragMe.getLatLng();
 
             // Attatch instructional pop-up 
-            dragMe.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
+            dragMe.bindPopup("<b>Drag & Drop!</b>").openPopup();
         }
 
         // .........................................................................................
 
         function _removeMap () {
-            if (service.map != null) {
-                service.map.remove();
-                delete service.map;
+            if (secret.map != null) {
+                secret.map.remove();
+                delete secret.map;
             }
         }
+
+
+
+        // .........................................................................................
+
+        function _getSelectedCoords() {
+
+            return secret.selectCoords != null? _objectifyLpoint(secret.selectCoords) : null;
+        }
+
+
+
+        // .........................................................................................
+
+        function _removeSelectedCoords()
+        {
+            secret.selectCoords = null;
+        }
+
+
 
         // .........................................................................................
 
@@ -291,6 +327,23 @@
         function UserException(message) {
             this.message = message;
             this.name = "User Exception";
+        }
+
+
+        // .........................................................................................
+
+        function _objectifyLpoint(point) {
+
+            var latLng = { lat: 0, lng: 0 };
+            var string = point.toString();
+
+            // string returned in format "LatLng(xxx, ooo)"
+            var arr = string.substring(7, string.length - 1).split(", ");
+
+            latLng.lat = Number(arr[0]);
+            latLng.lng = Number(arr[1]);
+
+            return latLng;
         }
     }
 

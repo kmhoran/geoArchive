@@ -57,7 +57,7 @@
         <!-- LatLng Input for for non-map media -->
         <div id="lan-lng-form" class="row" ng-if="!(CrbC.documentType == 'map') && CrbC.validResource">
             <div class="contribute-picture lean-left-2">
-                <button type="button" class="btn btn-info margin-bottom-1"><span class="fa fa-map-marker"></span> Plot on Map</button>
+                <button type="button" ng-click="CrbC.openSelectCoordinatesModal()" class="btn btn-info margin-bottom-1"><span class="fa fa-map-marker"></span> Plot on Map</button>
                 <br />
                 <p class="text-muted">or</p>
                 <form id="formMarkerLatLng" class="form-group">
@@ -68,7 +68,7 @@
 
                 </form>
             </div>
-            <hr/>
+            <hr />
         </div>
         <!-- End LatLng Input for for non-map media -->
 
@@ -110,7 +110,6 @@
                 <div id="map" class="map-display col-lg-8 col-md-8 col-sm-12 col-xs-12 " ng-class="{'hide-map': !(CrbC.documentType=='map') || !CrbC.validResource}"></div>
             </div>
             <!-- End Display Screen -->
-
             <!-- Doc details form -->
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
                 <h2>Document Details</h2>
@@ -158,7 +157,7 @@
             <!-- End doc details form -->
         </div>
     </div>
-    <br/>
+    <br />
 </div>
 
 
@@ -183,7 +182,8 @@
 
     <script src="~/Scripts/App/LeafletJS/Services/LeafletMapService.js"></script>
 
+    <script src="~/Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js"></script>
     <script src="~/Scripts/App/Pages/Controllers/ContributeController.js"></script>
 
-   
+
 }

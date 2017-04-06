@@ -34,7 +34,15 @@
 [ng\:cloak], [ng-cloak], .ng-cloak {
       display: none !important;
     }
-
+.modal-header {
+    background-color: #000;
+}
+.modal-header h3{
+    color: #eee;
+}
+.modal-footer{
+    background-color: #000;
+}
 
 /*End Utility*/
 /*Body*/
@@ -243,8 +251,12 @@ figure:hover figcaption h2 {
 }
 .map-display{
     display: block;
-    /*width: 100%;*/
     height: 45em;
+    background-color: #ccc;
+}
+.map-display-modal{
+    display: block;
+    height: 35em;
     background-color: #ccc;
 }
 /*End Map Page*/

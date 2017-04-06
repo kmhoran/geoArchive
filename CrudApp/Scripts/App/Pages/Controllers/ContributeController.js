@@ -4,9 +4,11 @@
     angular.module(project.APPNAME)
     .controller('contributeController', ContributeController);
 
-    ContributeController.$inject = ['$scope', '$documentHttpService', '$ipLocationService', '$leafletMapService'];
+    ContributeController.$inject = ['$scope', '$documentHttpService', '$ipLocationService'
+        , '$leafletMapService', '$uibModal'];
 
-    function ContributeController($scope, $documentHttpService, $ipLocationService, $leafletMapService) {
+    function ContributeController($scope, $documentHttpService, $ipLocationService
+        , $leafletMapService, $uibModal) {
 
         // Injection
         var vm = this;
@@ -14,6 +16,7 @@
         vm.$documentHttp = $documentHttpService;
         vm.$ipLocationService = $ipLocationService;
         vm.$leafletMapService = $leafletMapService;
+        vm.$uibModal = $uibModal;
 
 
         // Properties
@@ -37,6 +40,7 @@
         vm.displayResource = _displayResource;
         vm.resetResource = _resetResource;
         vm.submitform = _submitForm;
+        vm.openSelectCoordinatesModal = _openSelectCoordinatesModal;
 
 
         // Startup functions
@@ -136,6 +140,30 @@
         function showError(error) {
             console.log("An http error occured! ", error);
         };
+
+
+        // .........................................................................................
+
+        function _openSelectCoordinatesModal() {
+            var modalInstance = vm.$uibModal.open({
+                animation: true,
+                templateUrl: '/Scripts/App/Pages/Templates/selectCoordinatesModal.html',       
+                controller: 'selectCoordinatesModalController as SlCdrMC',
+                size: 'lg',
+                resolve: { 
+                    items: function () {
+                        return vm.markerLatLng;
+                    }
+                }
+            });
+
+            //  when the modal closes it returns a promise
+            modalInstance.result.then(function (newMarker) {
+                vm.markerLatLng = newMarker;    //  if the user closed the modal by clicking Save  
+            }, function () {
+                console.log('Modal dismissed at: ' + new Date());   //  if the user closed the modal by clicking cancel
+            });
+        }
     }
 
 })();

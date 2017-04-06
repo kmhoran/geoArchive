@@ -199,12 +199,13 @@
     <!-- Angular -->
     <script src="~/Scripts/bower_components/angular/angular.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.6.3/angular-route.js"></script>
+    <script src="~/Scripts/bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
     <script>
         project.APPNAME = "mapModule";
 
         (function () {
             "use strict"
-            angular.module(project.APPNAME, ['ngRoute']);
+            angular.module(project.APPNAME, ['ui.bootstrap']);
         })();
     </script>
     <!-- IP service -->
