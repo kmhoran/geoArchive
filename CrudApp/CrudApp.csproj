@@ -235,6 +235,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\CSS\custom.css" />
     <Content Include="Content\Theme\Images\higherOpacity.png" />
     <Content Include="Content\Theme\Images\lowerOpacity.png" />
     <Content Include="Scripts\App\Documents\Services\documentHttpService.js" />
@@ -626,6 +627,8 @@
     <Content Include="Scripts\bower_components\angular-bootstrap\bower.json" />
     <Content Include="Scripts\bower_components\angular-bootstrap\package.json" />
     <Content Include="Scripts\bower_components\angular-bootstrap\README.md" />
+    <Content Include="Content\CSS\SASS\custom.css.map" />
+    <Content Include="Content\CSS\SASS\custom.scss" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
