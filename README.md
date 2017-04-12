@@ -5,11 +5,12 @@
    
 ### Notable files
    
-   - Angularized LeafletJS Service:
+   - Extentions of LeafletJS:
    
    | Feature | File |
    | ------ | ------ | 
-   | Leaflet Service | [Scripts/App/LeafletJS/Services/LeafletMapService.js] |
+   | Angularized Leaflet Service | [Scripts/App/LeafletJS/Services/LeafletMapService.js] |
+   | Rotatable Image Extention | [Scripts/leaflet/leaflet.rotateimage.js] |
 
    - Contribution tool
    
@@ -36,6 +37,8 @@
    - Allow for multiple-document overlay
    
    [Scripts/App/LeafletJS/Services/LeafletMapService.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/LeafletJS/Services/LeafletMapService.js>
+   
+   [Scripts/leaflet/leaflet.rotateimage.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/leaflet/leaflet.rotateimage.js>
    
    [Views/Home/Contribute.cshtml]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Views/Home/Contribute.cshtml>
   
