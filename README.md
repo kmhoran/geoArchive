@@ -19,6 +19,12 @@
    | Contribute Controller | [Scripts/App/Pages/Controllers/ContributeController.js] |
    | Select Coordinates Modal Controller | [Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js] |
    
+   - Misc
+   
+   |Feature | File |
+   | ------ | ------|
+   | Precompiled CSS |  [Content/CSS/SASS/custom.scss] |
+   
    ### Todos
    
    - Finish Building out contribution tool
@@ -36,3 +42,6 @@
   [Scripts/App/Pages/Controllers/ContributeController.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/ContributeController.js>
    
    [Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js]: <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Scripts/App/Pages/Controllers/SelectCoordinatesModalController.js>
+   
+   [Content/CSS/SASS/custom.scss]:
+   <https://github.com/kmhoran/geoArchive/blob/master/CrudApp/Content/CSS/SASS/custom.scss>
