@@ -18,7 +18,9 @@ L.RotateImageOverlay = L.ImageOverlay.extend ({
     // Renders image overlay after zoom completes.
     _reset: _RioReset,
 
-    _initImage: _RioInitImage
+    _initImage: _RioInitImage,
+
+    getRotation: _getRotation
 });
 
 
@@ -116,8 +118,6 @@ function _RioSetTransform (el, offset, scale) {
 function _RioInitImage () {
     var img = this._image = L.DomUtil.create('img',
             'leaflet-image-layer ' + (this._zoomAnimated ? 'leaflet-zoom-animated' : ''));
-    // TODO FIXME DELETE
-    console.log("options.rotate is set to ", this._rotate);
 
     var rotateVal = this._rotate != null ? this._rotate : 0;
     img.setAttribute("data-rotate", rotateVal);
@@ -133,6 +133,13 @@ function _RioInitImage () {
 
     img.src = this._url;
     img.alt = this.options.alt;
+}
+
+
+// .................................................................................................
+
+function _getRotation() {
+    return this._image.getAttribute('data-rotate');
 }
 
 

@@ -45,7 +45,7 @@
                         </label>
 
                         <!-- Resource URL -->
-                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Paste Image Url" />
+                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Paste Image Url" value="http://kingofwallpapers.com/map/map-024.jpg"/>
                     </form>
                 </div>
             </div>
@@ -118,13 +118,13 @@
 
                     <!-- Title -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.title.$invalid && !detailsForm.title.$pristine}">
-                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDeatils.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required />
+                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDeatils.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.title.$invalid && !detailsForm.title.$pristine" class="help-block">A title is required.</p>
                     </div>
 
                     <!-- Year -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.year.$invalid && !detailsForm.year.$pristine}">
-                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDeatils.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required />
+                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDeatils.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.year.$invalid && !detailsForm.year.$pristine && !detailsForm.year.$error.min && !detailsForm.year.$error.max" class="help-block">A year is required.</p>
                         <p ng-show="detailsForm.year.$error.min" class="help-block">Your document must be for the Common Era (ie AD).</p>
                         <p ng-show="detailsForm.year.$error.max" class="help-block">Your document seems a bit too modern.</p>
@@ -132,13 +132,13 @@
 
                     <!-- User Name -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine}">
-                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDeatils.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required />
+                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDeatils.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine" class="help-block">Your name is required, even if it's just a nickname.</p>
                     </div>
 
                     <!-- Source -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine}">
-                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDeatils.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required />
+                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDeatils.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine" class="help-block">A soururce name is required.</p>
                     </div>
 

@@ -39,7 +39,7 @@
         //vm.verifyResource = _verifyResource;
         vm.displayResource = _displayResource;
         vm.resetResource = _resetResource;
-        vm.submitform = _submitForm;
+        vm.submitForm = _submitForm;
         vm.openSelectCoordinatesModal = _openSelectCoordinatesModal;
 
 
@@ -129,6 +129,8 @@
         function _submitForm(isValid) {
             if (isValid) {
                 console.log("data is valid! go save this object -> ");
+                console.log("imageBounds : ", $leafletMapService.getSelectedBounds());
+                console.log("image rotation: ", $leafletMapService.getRotation())
             } else {
                 console.log("form submitted with invalid data :(")
             }

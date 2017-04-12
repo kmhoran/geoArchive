@@ -21,6 +21,8 @@
         // Properties
         secret.map;
         secret.selectCoords = null;
+        secret.selectBounds = null;
+        secret.editImage = null;
 
         // Public Methods
         service.editMap = _editMap;
@@ -29,6 +31,8 @@
         service.selectCoordinates = _selectCoordinates;
         service.removeSelectedCoords = _removeSelectedCoords;
         service.getSelectedCoords = _getSelectedCoords;
+        service.getSelectedBounds = _getSelectedBounds;
+        service.getRotation = _getRotation;
 
         return service;
 
@@ -50,6 +54,7 @@
 
             var initialBounds = _setInitialBounds(latLng);
 
+            secret.selectBounds = initialBounds;
 
             secret.map = L.map('map', {
                 // Map default settings
@@ -59,11 +64,10 @@
             });
 
             // Fit map to edit image, and give a little room to work
-            secret.map.fitBounds(L.latLngBounds(initialBounds).pad(0.1));
+            secret.map.fitBounds(initialBounds.pad(0.1));
 
 
             // Initialize image to Edit
-            // .................................................................................
 
             var editImgUrl = url;
 
@@ -75,23 +79,25 @@
             };
 
             var editImg = new L.RotateImageOverlay(editImgUrl, editImgBounds, editImgOptions).addTo(secret.map);
-
-            // .................................................................................
+            secret.editImage = editImg;
 
 
             // Dragable image bounds markers
-            // .................................................................................
 
-            var dragMeTop = L.marker(initialBounds[0], {
+            var dragMeTop = L.marker(initialBounds.getNorthEast(), {
                 draggable: true
             });
 
-            var dragMeBottom = L.marker(initialBounds[1], {
+            var dragMeBottom = L.marker(initialBounds.getSouthWest(), {
                 draggable: true
             });
 
             // Update image bounds on marker move
             dragMeTop.on("dragend", function updateDMTop(e) {
+
+                // TODO FIXME DELETE 
+                console.log(editImg.getRotation())
+
                 var newLatLng = this.getLatLng();
 
                 var oldLatLng = dragMeBottom.getLatLng();
@@ -100,15 +106,18 @@
 
                 editImgBounds = newBounds;
 
-                editImg.setBounds(editImgBounds);
+                secret.selectBounds = newBounds;
 
-                // TODO FIXME Logs new bounds coordinates
-                console.log("lat-lng: ", editImg.getBounds().toBBoxString());
+                editImg.setBounds(editImgBounds);
 
             });
 
 
             dragMeBottom.on("dragend", function updateDMBottom(e) {
+
+                // TODO FIXME DELETE 
+                console.log(editImg.getRotation())
+
                 var newLatLng = this.getLatLng();
 
                 var oldLatLng = dragMeTop.getLatLng();
@@ -117,10 +126,9 @@
 
                 editImgBounds = newBounds;
 
-                editImg.setBounds(editImgBounds);
+                secret.selectBounds = newBounds;
 
-                // TODO FIXME Logs new bounds coordinates
-                console.log(editImg.getBounds().toBBoxString());
+                editImg.setBounds(editImgBounds);
 
             });
 
@@ -128,14 +136,12 @@
             dragMeTop.addTo(secret.map);
             dragMeBottom.addTo(secret.map);
 
-            // .................................................................................
 
             // Set map legend
             var baseMaps = tilesets.baseMaps;
 
 
             L.control.layers(baseMaps).addTo(secret.map);
-            // .................................................................................
 
             //Set opacity controls
             var higherOpacity = new L.Control.higherOpacity();
@@ -161,7 +167,6 @@
                 throw UserException("DisplayMap: invalid Request");
             }
 
-            // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Prepare map
 
             // Clear map space.
@@ -184,7 +189,6 @@
             // Fit map to image, and give a little room to work. (maybe not)
             //map.fitBounds(L.latLngBounds(bounds).pad(0.02));
 
-            // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Prepare display image
 
             var rotate = options.rotate != null ? options.rotate : 0;
@@ -195,13 +199,11 @@
 
             var displayImg = new L.RotateImageOverlay(url, bounds, imgOptions).addTo(secret.map);
 
-            // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Set map legend
 
             var baseMaps = tilesets.baseMaps;
             L.control.layers(baseMaps).addTo(secret.map);
 
-            // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             //Set opacity controls
 
             var higherOpacity = new L.Control.higherOpacity();
@@ -240,7 +242,6 @@
                 layers: [tilesets.tileset[0]]
             });
             
-            // ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
             // Draggable marker
 
             var dragMe = L.marker(latLng, {
@@ -262,11 +263,19 @@
             dragMe.bindPopup("<b>Drag & Drop!</b>").openPopup();
         }
 
+
+
         // .........................................................................................
 
         function _removeMap () {
             if (secret.map != null) {
+
+                secret.selectCoords = null;
+                secret.selectBounds = null;
+                secret.editImage = null;
+
                 secret.map.remove();
+
                 delete secret.map;
             }
         }
@@ -284,6 +293,23 @@
 
         // .........................................................................................
 
+        function _getSelectedBounds() {
+
+            return secret.selectBounds != null ? _objectifyLbounds(secret.selectBounds) : null;
+        }
+
+
+
+        // .........................................................................................
+
+        function _getRotation() {
+            return secret.editImage != null ? secret.editImage.getRotation() : null;
+        }
+
+
+
+        // .........................................................................................
+
         function _removeSelectedCoords()
         {
             secret.selectCoords = null;
@@ -294,7 +320,7 @@
         // .........................................................................................
 
         function _setInitialBounds(initialLatLng) {
-            var initialBounds = [[(initialLatLng.lat + 1), (initialLatLng.lng - 1)], [(initialLatLng.lat - 1), (initialLatLng.lng + 1)]];
+            var initialBounds = L.latLngBounds([(initialLatLng.lat + 1), (initialLatLng.lng - 1)], [(initialLatLng.lat - 1), (initialLatLng.lng + 1)]);
 
             return initialBounds;
         }
@@ -344,6 +370,21 @@
             latLng.lng = Number(arr[1]);
 
             return latLng;
+        }
+
+
+        // .........................................................................................
+
+        function _objectifyLbounds(bounds) {
+            var northEast = bounds.getNorthEast();
+            var southWest = bounds.getSouthWest();
+
+            var objectBounds = {
+                northEast: _objectifyLpoint(northEast),
+                southWest: _objectifyLpoint(southWest)
+            };
+            
+            return objectBounds;
         }
     }
 

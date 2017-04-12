@@ -30,9 +30,9 @@ L.Control.rotate = L.Control.extend({
         $("#map").on("click", "#rotation-input", function () {
             
             var rotate = $(this).val();
-            console.log("A change!", rotate);
+            
             targetLayer._image.setAttribute("data-rotate", rotate);
-            console.log("An Effect!", targetLayer._image.getAttribute("data-rotate"));
+           
             targetLayer._reset();
         });
 
@@ -138,8 +138,6 @@ function onClickHigherOpacity() {
 }
 
 function onClickLowerOpacity() {
-    // TODO FIXME DELETE
-    console.log("layer options: ", targetLayer)
 
     var opacity_value = targetLayer.options.opacity;
 
