@@ -34,18 +34,18 @@
                 <div class="lean-left-1">
                     <form ng-class="{'form-group':true, 'form-group-lg':true, 'has-error': !CrbC.validResource , 'has-success': CrbC.validResource}">
                         <!-- Radio buttons -->
-                        <label for="doctype-map">
-                            <input type="radio" id="doctype-map" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="map" ng-checked />Map
+                        <label for="doctype-map" class="cursor-pointer">
+                            <input type="radio" id="doctype-map" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="map" checked/>Map
                         </label>
-                        <label for="doctype-picture">
+                        <label for="doctype-picture" class="cursor-pointer">
                             <input type="radio" id="doctype-picture" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="picture" />Picture
                         </label>
-                        <label for="doctype-video">
+                        <label for="doctype-video" class="cursor-pointer">
                             <input type="radio" id="doctype-video" name="doctype" class="form-control-inline" ng-model="CrbC.documentType" ng-change="CrbC.resetResource()" value="video" disabled />Video
                         </label>
 
                         <!-- Resource URL -->
-                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Paste Image Url" value="http://kingofwallpapers.com/map/map-024.jpg"/>
+                        <input class="form-control form-control-lg" ng-Change="CrbC.displayResource()" ng-model="CrbC.resourceUrl" type="text" height="5" placeholder="Paste Image Url" />
                     </form>
                 </div>
             </div>
@@ -118,13 +118,13 @@
 
                     <!-- Title -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.title.$invalid && !detailsForm.title.$pristine}">
-                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDeatils.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required/>
+                        <input name="title" type="text" class="form-control" ng-model="CrbC.documentDetails.title" placeholder="*Document Title" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.title.$invalid && !detailsForm.title.$pristine" class="help-block">A title is required.</p>
                     </div>
 
                     <!-- Year -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.year.$invalid && !detailsForm.year.$pristine}">
-                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDeatils.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required/>
+                        <input name="year" class="form-control" type="number" ng-model="CrbC.documentDetails.year" min="0" max="2015" placeholder="*Year (yyyy)" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.year.$invalid && !detailsForm.year.$pristine && !detailsForm.year.$error.min && !detailsForm.year.$error.max" class="help-block">A year is required.</p>
                         <p ng-show="detailsForm.year.$error.min" class="help-block">Your document must be for the Common Era (ie AD).</p>
                         <p ng-show="detailsForm.year.$error.max" class="help-block">Your document seems a bit too modern.</p>
@@ -132,23 +132,23 @@
 
                     <!-- User Name -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine}">
-                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDeatils.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required/>
+                        <input name="contributor" class="form-control" type="text" ng-model="CrbC.documentDetails.contributor" placeholder="*Your Name" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.contributor.$invalid && !detailsForm.contributor.$pristine" class="help-block">Your name is required, even if it's just a nickname.</p>
                     </div>
 
                     <!-- Source -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine}">
-                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDeatils.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required/>
+                        <input name="sourceInstitution" class="form-control" type="text" ng-model="CrbC.documentDetails.sourceInstitution" placeholder="*Source Instuturion (eg. Library of Congress)" ng-disabled="!CrbC.validResource" required/>
                         <p ng-show="detailsForm.sourceInstitution.$invalid && !detailsForm.sourceInstitution.$pristine" class="help-block">A soururce name is required.</p>
                     </div>
 
                     <!-- Source Website-->
-                    <input name="institutionUrl" class="form-control" type="text" ng-model="CrbC.documentDeatils.institutionUrl" placeholder="Source Homepage (eg. https://www.loc.gov)" ng-disabled="!CrbC.validResource" />
+                    <input name="institutionUrl" class="form-control" type="text" ng-model="CrbC.documentDetails.institutionUrl" placeholder="Source Homepage (eg. https://www.loc.gov)" ng-disabled="!CrbC.validResource" />
                     <br />
 
                     <!-- Description -->
                     <div class="form-group" ng-class="{'has-error' : detailsForm.description.$invalid && !detailsForm.description.$pristine}">
-                        <textarea name="description" class="form-control" ng-model="CrbC.documentDeatils.description" placeholder="*Give us an idea of what we're looking at." rows="5" ng-disabled="!CrbC.validResource" required></textarea>
+                        <textarea name="description" class="form-control" ng-model="CrbC.documentDetails.description" placeholder="*Give us an idea of what we're looking at." rows="5" ng-disabled="!CrbC.validResource" required></textarea>
                         <p ng-show="detailsForm.description.$invalid && !detailsForm.description.$pristine" class="help-block">A description is required.</p>
                     </div>
                     <button class="btn btn-success" type="submit" ng-disabled="detailsForm.$invalid || !CrbC.validResource"><span class="fa fa-paper-plane-o"></span>  Submit Document</button>

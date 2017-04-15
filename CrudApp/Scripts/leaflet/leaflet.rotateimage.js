@@ -139,7 +139,7 @@ function _RioInitImage () {
 // .................................................................................................
 
 function _getRotation() {
-    return this._image.getAttribute('data-rotate');
+    return Number(this._image.getAttribute('data-rotate'));
 }
 
 

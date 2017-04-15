@@ -1,4 +1,5 @@
 ﻿using CrudApp.Models.Documents;
+using CrudApp.Models.Requests.Documents;
 using CrudApp.Services;
 using Sabio.Web.Models.Responses;
 using System;
@@ -12,17 +13,17 @@ using System.Web.Http;
 namespace CrudApp.Controllers.ApiControllers
 {
     [RoutePrefix("api/archive")]
-    public class ArchiveApiController: BaseApiController
+    public class ArchiveApiController : BaseApiController
     {
-        [Route("{archiveId:int}")]
+        [Route("{archiveId:int}"), HttpGet]
         public HttpResponseMessage GetDocumentById(int archiveId)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            DocumentDomain document = ArchiveService.GetArchiveById(archiveId);
+            DocumentDomain document = ArchiveService.GetDocumentById(archiveId);
 
             var response = new ItemResponse<DocumentDomain> { Item = document };
 
@@ -33,7 +34,7 @@ namespace CrudApp.Controllers.ApiControllers
 
         // .........................................................................................
 
-        [Route("{archiveId:int}/map")]
+        [Route("{archiveId:int}/map"), HttpGet]
         public HttpResponseMessage GetMapByDocumentId(int archiveId)
         {
             if (!ModelState.IsValid)
@@ -49,10 +50,47 @@ namespace CrudApp.Controllers.ApiControllers
         }
 
 
+        // .........................................................................................
+
+        [Route("map"), HttpPost]
+        public HttpResponseMessage ContributeMap(MapRequest model)
+        {
+            if(!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+            int num = MapService.ContributeMap(model);
+
+            var response = new ItemResponse<int> { Item = num };
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+            
+        }
+
+
+
 
         // .........................................................................................
 
-        [Route("latest")]
+        [Route("picture"), HttpPost]
+        public HttpResponseMessage ContributePicture(PictureRequest model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+            int num = PictureService.ContributePicture(model);
+
+            var response = new ItemResponse<int> { Item = num };
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+
+        }
+
+
+        // .........................................................................................
+
+        [Route("latest"), HttpGet]
         public HttpResponseMessage GetLatestDocuments()
         {
             if (!ModelState.IsValid)

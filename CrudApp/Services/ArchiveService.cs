@@ -8,7 +8,7 @@ namespace CrudApp.Services
 {
     public class ArchiveService : BaseService
     {
-        public static DocumentDomain GetArchiveById(int archiveId)
+        public static DocumentDomain GetDocumentById(int archiveId)
         {
             DocumentDomain doc = null;
             switch (archiveId)
@@ -38,7 +38,7 @@ namespace CrudApp.Services
 
             for (int i = 0; i < 6; i++)
             {
-                var doc = GetArchiveById((i % 3) + 1);
+                var doc = GetDocumentById((i % 3) + 1);
                 latest.Add(doc);
             }
 

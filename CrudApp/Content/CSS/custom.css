@@ -38,6 +38,13 @@
 .modal-footer {
   background-color: #000; }
 
+.cursor-pointer {
+  cursor: pointer; }
+
+.clear-heading {
+  position: relative;
+  top: 7em; }
+
 /*End Utility*/
 /*Body*/
 body {

@@ -25,15 +25,16 @@
         vm.validResource = false;
         vm.documentType = 'map';
         vm.markerLatLng = null;
-        //vm.documentDeatils = {
-        //    title: null,
-        //    date: null,
-        //    contributor: null,
-        //    description: null,
-        //    sourceInstitution: null,
-        //    institutionUrl: null,
-        //    resourceUrl: null
-        //};
+        vm.mapBounds = null;
+        vm.mapRotation = null;
+        vm.documentDetails = {
+            title: null,
+            year: null,
+            contributor: null,
+            description: null,
+            sourceInstitution: null,
+            institutionUrl: null
+        };
 
         // Methods
         //vm.verifyResource = _verifyResource;
@@ -117,9 +118,11 @@
         // .........................................................................................
 
         function _resetResource() {
+            // Called when radio button change made
             vm.resourceUrl = '';
             vm.validResource = false;
             vm.$leafletMapService.removeMap();
+
         }
 
 
@@ -127,15 +130,46 @@
         // .........................................................................................
 
         function _submitForm(isValid) {
-            if (isValid) {
-                console.log("data is valid! go save this object -> ");
-                console.log("imageBounds : ", $leafletMapService.getSelectedBounds());
-                console.log("image rotation: ", $leafletMapService.getRotation())
+            if (isValid && vm.validResource) {
+
+                switch (vm.documentType) {
+                    case "map":
+                        vm.mapBounds = $leafletMapService.getSelectedBounds();
+                        vm.mapRotation = $leafletMapService.getRotation();
+                        _postMap();
+                        break;
+                    case "picture":
+                        _postPhoto();
+                        break;
+                }
+
             } else {
                 console.log("form submitted with invalid data :(")
             }
         };
 
+
+
+        // .........................................................................................
+        
+        function _postMap() {
+            var mapData = Object.assign({}, vm.documentDetails);
+            mapData.resourceUrl = vm.resourceUrl;
+            mapData.bounds = vm.mapBounds;
+            mapData.rotation = vm.mapRotation;
+
+            console.log("map to upload:", mapData);
+        }
+
+        // .........................................................................................
+
+        function _postPhoto() {
+            var pictureData = Object.assign({}, vm.documentDetails);
+            pictureData.resourceUrl = vm.resourceUrl;
+            pictureData.marker = vm.markerLatLng;
+
+            console.log("picture to upload: ", pictureData);
+        }
 
         // .........................................................................................
 

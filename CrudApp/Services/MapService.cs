@@ -1,4 +1,5 @@
 ﻿using CrudApp.Models.Documents;
+using CrudApp.Models.Requests.Documents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,13 @@ namespace CrudApp.Services
             };
 
             return map;
+        }
+
+        public static int ContributeMap(MapRequest model)
+        {
+            int result = model.Title.Length;
+
+            return result;
         }
     }
 }

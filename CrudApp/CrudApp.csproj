@@ -223,6 +223,9 @@
     <Compile Include="Models\Documents\MapDomain.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Requests\Documents\DocumentRequest.cs" />
+    <Compile Include="Models\Requests\Documents\MapRequest.cs" />
+    <Compile Include="Models\Requests\Documents\PictureRequest.cs" />
     <Compile Include="Models\Responses\BaseResponseModel.cs" />
     <Compile Include="Models\Responses\ItemResponse.cs" />
     <Compile Include="Models\Responses\ItemsResponse.cs" />
@@ -232,13 +235,14 @@
     <Compile Include="Services\ArchiveService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\MapService.cs" />
+    <Compile Include="Services\PictureService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\CSS\custom.css" />
     <Content Include="Content\Theme\Images\higherOpacity.png" />
     <Content Include="Content\Theme\Images\lowerOpacity.png" />
-    <Content Include="Scripts\App\Documents\Services\documentHttpService.js" />
+    <Content Include="Scripts\App\Archive\Services\documentHttpService.js" />
     <Content Include="Scripts\App\Pages\Controllers\ContributeController.js" />
     <Content Include="Scripts\App\Pages\Controllers\HomeController.js" />
     <Content Include="Scripts\App\IPLocation\Services\IpLocationService.js" />
@@ -697,10 +701,10 @@
     <Content Include="Views\Home\GoLocal.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Home\Contribute.cshtml" />
+    <Content Include="Views\Home\Success.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\Requests\Documents\" />
     <Folder Include="Views\DocumentDetail\" />
   </ItemGroup>
   <ItemGroup>

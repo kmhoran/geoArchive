@@ -22,7 +22,7 @@ namespace CrudApp.Controllers
         [Route("detail/{id:int")]
         public ActionResult Detail(int id)
         {
-            BaseVm vm = new BaseVm { _Document = ArchiveService.GetArchiveById(id) };
+            BaseVm vm = new BaseVm { _Document = ArchiveService.GetDocumentById(id) };
 
             return View(vm);
         }
@@ -31,7 +31,7 @@ namespace CrudApp.Controllers
         [Route("map/{id:int}")]
         public ActionResult Map(int id)
         {
-            BaseVm vm = new BaseVm { _Document = ArchiveService.GetArchiveById(id) };
+            BaseVm vm = new BaseVm { _Document = ArchiveService.GetDocumentById(id) };
             if (vm._Document.TypeId == Enums.DocumentType.Map)
             {
                 return View(vm);
@@ -58,6 +58,13 @@ namespace CrudApp.Controllers
 
         [Route("contribute")]
         public ActionResult Contribute()
+        {
+            return View();
+        }
+
+
+        [Route("success")]
+        public ActionResult Success()
         {
             return View();
         }
