@@ -221,6 +221,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Documents\DocumentDomain.cs" />
     <Compile Include="Models\Documents\MapDomain.cs" />
+    <Compile Include="Models\Documents\PictureDomain.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Requests\Documents\DocumentRequest.cs" />

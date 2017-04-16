@@ -190,7 +190,6 @@
                 } else {
                     _failureRedirect();
                 }
-               
             })
             .catch(_failureRedirect);
         }

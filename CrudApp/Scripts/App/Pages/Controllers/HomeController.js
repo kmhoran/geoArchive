@@ -54,22 +54,20 @@
                 // Use data to populate featured map.
                 var options = {
                     bounds: [
-                        [
-                            vm.featuredMap.TopLat,
-                            vm.featuredMap.TopLng
-                        ],
-                        [
-                            vm.featuredMap.BottomLat,
-                            vm.featuredMap.BottomLng
-                        ]],
+                        [vm.featuredMap.Bounds.NorthEast.Lat,
+                        vm.featuredMap.Bounds.NorthEast.Lng, ],
+                        [vm.featuredMap.Bounds.SouthWest.Lat,
+                        vm.featuredMap.Bounds.SouthWest.Lng, ]
+                    ],
 
-                    rotate: vm.featuredMap.Rotate
+                    rotate: vm.featuredMap.Rotation
                 };
 
-                //var latLng = { lat: vm.featuredMap.TopLat, lng: vm.featuredMap.TopLng }
-                console.log("homeController options: ", options);
+
+                console.log("featured map: ", vm.featuredMap);
+                var latLng = vm.featuredMap.Bounds.NorthEast;
+
                 vm.$leafletMapService.displayMap(options, vm.featuredMap.ResourceUrl);
-                //project.services.leaflet.editMap(options, vm.featuredMap.ResourceUrl);
 
             })
             .catch(showError)

@@ -54,7 +54,7 @@ namespace CrudApp.Services
             {
                 DocumentId = 1,
                 Title = "Orange County",
-                Date = 1889,
+                Year = 1889,
                 Contributor = "Carlos",
                 Description = "This is a map of Orange County from 1889.",
                 ResourceUrl = "https://tile.loc.gov/image-services/iiif/service:gmd:gmd436:g4363:g4363o:la000032/full/pct:12.5/0/default.jpg",
@@ -73,7 +73,7 @@ namespace CrudApp.Services
             {
                 DocumentId = 2,
                 Title = "LA in 1857",
-                Date = 1857,
+                Year = 1857,
                 Contributor = "John",
                 Description = "Picture of LA.",
                 ResourceUrl = "https://cdn.loc.gov/service/pnp/ds/03400/03470v.jpg",
@@ -92,7 +92,7 @@ namespace CrudApp.Services
             {
                 DocumentId = 3,
                 Title = "LA Rail System",
-                Date = 1906,
+                Year = 1906,
                 Contributor = "Carlos",
                 Description = "This is a map of Orange County from 1889.",
                 ResourceUrl = "https://tile.loc.gov/image-services/iiif/service:gmd:gmd436:g4364:g4364l:ct001797/full/pct:25/0/default.jpg",

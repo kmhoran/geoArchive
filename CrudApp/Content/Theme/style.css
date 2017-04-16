@@ -92,7 +92,7 @@ a:hover,a:focu{s
 }
 .intro-box h3{
     font-family: "Lato", sans-serif;
-    color:#0cbdaa;
+    color:#1E59C5;
     font-size: 60px;
     line-height: 65px;
     margin-bottom:20px;
@@ -110,8 +110,8 @@ a:hover,a:focu{s
     letter-spacing: 4px;
 }
 .btn-white-border:hover{
-    color:#0cbdaa;
-    border-color: #0cbdaa;
+    color:#1E59C5;
+    border-color: #1E59C5;
 }
 
 /**section about**/
@@ -218,7 +218,7 @@ a:hover,a:focu{s
     vertical-align: middle;
     width: 50px;
     height: 5px;
-    background-color: #0cbdaa;
+    background-color: #1E59C5;
     margin-left: 20px;
 }
 

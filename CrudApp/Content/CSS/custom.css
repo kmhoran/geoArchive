@@ -45,6 +45,22 @@
   position: relative;
   top: 7em; }
 
+.grey {
+  color: #555; }
+
+.btn-border-theme-dark {
+  background-color: transparent;
+  border: 2px solid #1E59C5;
+  color: #1E59C5;
+  text-transform: uppercase;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-size: 20px; }
+
+.btn-border-theme-dark:hover {
+  background-color: #1E59C5;
+  color: #eee; }
+
 /*End Utility*/
 /*Body*/
 body {
@@ -58,6 +74,21 @@ body .container-fluid {
 .about-section img.full-img {
   width: 140%;
   overflow: hidden; }
+
+.featured-map-section {
+  padding: 80px 0; }
+  .featured-map-section #year {
+    color: #1E59C5; }
+  .featured-map-section #credit {
+    color: #555; }
+  .featured-map-section #description {
+    padding-top: 1em;
+    font-size: 1.2em; }
+  .featured-map-section .btn-border-theme-dark {
+    margin-top: 2em; }
+  .featured-map-section #find-local:hover {
+    background-color: #eee;
+    color: #1E59C5; }
 
 .slide-section {
   background-color: rgba(12, 189, 170, 0.5);

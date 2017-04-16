@@ -6,22 +6,21 @@ using System.Web;
 
 namespace CrudApp.Models.Documents
 {
-    public class MapDomain
+    public class MapDomain : DocumentDomain
     {
         public int MapId { get; set; }
 
-        public int DocumentId { get; set; }
+        public Bounds Bounds { get; set; }
 
-        public string ResourceUrl { get; set; }
+        public int Rotation { get; set; }
+    }
 
-        public double TopLat { get; set; }
 
-        public double TopLng { get; set; }
 
-        public double BottomLat { get; set; }
+    public class Bounds
+    {
+        public LatLng NorthEast { get; set; }
 
-        public double BottomLng { get; set; }
-
-        public int Rotate { get; set; }
+        public LatLng SouthWest { get; set; }
     }
 }

@@ -8,6 +8,7 @@ namespace CrudApp.Models.Requests.Documents
     public class MapRequest : DocumentRequest
     {
         public Bounds Bounds { get; set; }
+
         public int Rotation { get; set; }
 
     }
@@ -15,6 +16,7 @@ namespace CrudApp.Models.Requests.Documents
     public class Bounds
     {
         public LatLng NorthEast { get; set; }
+
         public LatLng SouthWest { get; set; }
     }
 
