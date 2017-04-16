@@ -63,10 +63,14 @@ namespace CrudApp.Controllers
         }
 
 
-        [Route("success")]
-        public ActionResult Success()
+        [Route("redirect")]
+        public ActionResult Redirect(string response, bool success=true)
         {
-            return View();
+            string decoded = Server.UrlDecode(response);
+
+            var vm = new RedirectResponseVM { Response = decoded, Success = success };
+
+            return View(vm);
         }
 
     }

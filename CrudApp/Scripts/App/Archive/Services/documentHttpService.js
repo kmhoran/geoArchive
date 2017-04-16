@@ -8,18 +8,16 @@
 
 
     function DocumentHttpService($http) {
-        var service = {};
-
-        // Injection
-        service.$http = $http;
 
         // Properties
         var baseUrl = "http://localhost:52749/api/archive/";
 
-        // Public Methods
-        service.getDocumentById = _getDocumentById;
-        service.getLatest = _getLatest;
-        service.getMapByDocumentId = _getMapByDocumentId;
+        // Build Service
+        var service = {
+            getDocumentById: _getDocumentById,
+            getLatest: _getLatest,
+            getMapByDocumentId: _getMapByDocumentId
+        };
 
         // Return Service
         return service;
@@ -57,7 +55,7 @@
 
         // .........................................................................................
 
-        function _getLatest () {
+        function _getLatest() {
 
             var url = baseUrl + "latest";
 

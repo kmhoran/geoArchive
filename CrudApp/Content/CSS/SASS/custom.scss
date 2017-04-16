@@ -64,6 +64,7 @@ $map2-background: url('~/../../Theme/Images/pexels-england-map-photo-229949.jpeg
     position: relative;
     top: 7em;
 }
+
 /*End Utility*/
 /*Body*/
 body {
@@ -318,3 +319,23 @@ figure:hover figcaption h2 {
 
 
 /* End Contribute */
+/* Redirect Page */
+
+.redirect{
+
+    position: relative;
+    top: 17em;
+    color: #555555;
+
+    .success{
+        font-size: 10em;
+        color: #559955;
+    }
+
+    .failure{
+        font-size: 10em;
+        color: #995555;
+    }
+}
+
+/* End Redirect Page */

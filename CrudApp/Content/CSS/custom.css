@@ -244,5 +244,18 @@ figure:hover figcaption h2 {
   margin: 0; }
 
 /* End Contribute */
+/* Redirect Page */
+.redirect {
+  position: relative;
+  top: 17em;
+  color: #555555; }
+  .redirect .success {
+    font-size: 10em;
+    color: #559955; }
+  .redirect .failure {
+    font-size: 10em;
+    color: #995555; }
+
+/* End Redirect Page */
 
 /*# sourceMappingURL=custom.css.map */

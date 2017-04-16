@@ -4,16 +4,18 @@
     angular.module(project.APPNAME)
     .controller('contributeController', ContributeController);
 
-    ContributeController.$inject = ['$scope', '$documentHttpService', '$ipLocationService'
-        , '$leafletMapService', '$uibModal'];
+    ContributeController.$inject = ['$scope', '$documentHttpService', '$mapHttpService',
+        '$pictureHttpService', '$ipLocationService', '$leafletMapService', '$uibModal'];
 
-    function ContributeController($scope, $documentHttpService, $ipLocationService
-        , $leafletMapService, $uibModal) {
+    function ContributeController($scope, $documentHttpService, $mapHttpService,
+        $pictureHttpService, $ipLocationService, $leafletMapService, $uibModal) {
 
         // Injection
         var vm = this;
 
         vm.$documentHttp = $documentHttpService;
+        vm.$mapHttpService = $mapHttpService;
+        vm.$pictureHttpService = $pictureHttpService;
         vm.$ipLocationService = $ipLocationService;
         vm.$leafletMapService = $leafletMapService;
         vm.$uibModal = $uibModal;
@@ -76,7 +78,6 @@
                 case "picture":
                     _verifyImage(_displayPicture);
                     break;
-
             }
         }
 
@@ -158,7 +159,19 @@
             mapData.bounds = vm.mapBounds;
             mapData.rotation = vm.mapRotation;
 
-            console.log("map to upload:", mapData);
+            var success;
+
+            vm.$mapHttpService.contributeMap(mapData)
+            .then(function handleMapContribution(contribution) {
+                // TODO FIXME don't leave it like this
+                console.log("map contribution data: ", contribution);
+                if (contribution.data.IsSuccessful) {
+                    _successRedirect();
+                } else {
+                    _failureRedirect();
+                }
+            })
+            .catch(_failureRedirect);
         }
 
         // .........................................................................................
@@ -168,7 +181,18 @@
             pictureData.resourceUrl = vm.resourceUrl;
             pictureData.marker = vm.markerLatLng;
 
-            console.log("picture to upload: ", pictureData);
+            vm.$pictureHttpService.contributePicture(pictureData)
+            .then(function handlePictureContribution(contribution) {
+                // TODO FIXME don't leave it like this
+                console.log("picture contribution data: ", contribution);
+                if (contribution.data.IsSuccessful) {
+                    _successRedirect();
+                } else {
+                    _failureRedirect();
+                }
+               
+            })
+            .catch(_failureRedirect);
         }
 
         // .........................................................................................
@@ -176,6 +200,22 @@
         function showError(error) {
             console.log("An http error occured! ", error);
         };
+
+
+        // .........................................................................................
+
+        function _successRedirect() {
+            var response = encodeURI("?response=Thank You For Your Submission");
+            window.location.href = "/home/redirect/".concat(response);
+        }
+
+
+        // .........................................................................................
+
+        function _failureRedirect () {
+            var response = encodeURI("?response=Something Went Wrong&success=false");
+            window.location.href = "/home/redirect/".concat(response);
+        }
 
 
         // .........................................................................................

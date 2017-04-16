@@ -1,0 +1,38 @@
+﻿@model CrudApp.Models.ViewModels.RedirectResponseVM
+@{
+    Layout = "~/Views/Shared/_StormLayout1.cshtml";
+}
+
+    <div class="redirect text-center">
+        @if(Model.Success){
+            <h1>Awesome!</h1>
+            <h1 class="success"><span class="fa fa-thumbs-up"></span></h1>
+        }
+        else
+        {
+            <h1>Woops!</h1>
+            <h1 class="failure"><span class="fa fa-thumbs-down"></span></h1>
+        }
+
+        <h1>@Model.Response</h1>
+    </div>
+
+
+@section Scripts{
+    <script>
+    $(document).ready(function () {
+        function setHeight() {
+            windowHeight = $(window).innerHeight();
+            $('.redirect').css('min-height', windowHeight);
+        };
+        setHeight();
+
+        $(window).resize(function () {
+            setHeight();
+        });
+    });
+</script>
+    
+    }
+
+

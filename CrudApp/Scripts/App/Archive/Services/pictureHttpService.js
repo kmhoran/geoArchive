@@ -2,25 +2,22 @@
     "use strict";
 
     angular.module(project.APPNAME)
-    .factory("$mapHttpService", MapHttpService);
+    .factory('$pictureHttpService', PictureHttpService);
 
-    MapHttpService.$inject = ['$http'];
+    PictureHttpService.$inject = ['$http'];
 
-    function MapHttpService($http) {
+    function PictureHttpService($http) {
 
-        //- Properties
-        var baseUrl = "http://localhost:52749/api/archive/map";
+        // Base Url
+        var baseUrl = "http://localhost:52749/api/archive/picture";
 
-        //- Public methods
         return {
-            contributeMap: _contributeMap
-        };
-
+            contributePicture: _contributePicture
+        }
 
         // /////////////////////////////////////////////////////////////////////////////////////////
 
-
-        function _contributeMap(data) {
+        function _contributePicture(data) {
 
             var settings = {
                 method: "POST",
@@ -30,5 +27,6 @@
 
             return $http(settings);
         }
+
     }
 })();
