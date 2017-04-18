@@ -1,6 +1,7 @@
 $themeblue: #0cbdaa;
 $accentdark: #1E59C5;
 $grey: #555;
+$white: #eee;
 
 /* Images */
 $map1-background: url('~/../../Theme/Images/pexels-photo-maps.jpeg');
@@ -81,7 +82,21 @@ $map2-background: url('~/../../Theme/Images/pexels-england-map-photo-229949.jpeg
 }
 .btn-border-theme-dark:hover{
     background-color: $accentdark;
-    color: #eee;
+    color: $white;
+}
+.btn-border-theme-white{
+    background-color: transparent;
+    border: 2px solid $white;
+    color: $white;
+    text-transform: uppercase;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    font-size: 20px;
+}
+.btn-border-theme-white:hover{
+    background-color: $themeblue;
+    color: $white;
+    border-color: $themeblue;
 }
 /*End Utility*/
 /*Body*/
@@ -101,9 +116,9 @@ body .container-fluid {
 
 .featured-map-section{
     padding: 80px 0;
-    #year{
+    /*#year{
         color: $accentdark;
-    }
+    }*/
     #credit{
         color: $grey;
     }

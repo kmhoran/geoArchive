@@ -31,7 +31,7 @@
             <div class="col-md-6 col-sm-6">
                 @if (Model._Document.TypeId == CrudApp.Enums.DocumentType.Map)
                 {
-                    <h2><a href="#">@Model._Document.Title (@Model._Document.Date)</a></h2>
+                    <h2><a href="#">@Model._Document.Title</a> | @Model._Document.Year</h2>
 
                     <a href="@Model._Document.ResourceUrl">
                         <img src="@Model._Document.ResourceUrl" class="img-display" alt="">
@@ -39,7 +39,7 @@
                 }
                 @if (Model._Document.TypeId == CrudApp.Enums.DocumentType.Photo)
                 {
-                    <h2><a href="#">@Model._Document.Title (@Model._Document.Date)</a></h2>
+                    <h2><a href="#">@Model._Document.Title</a> | @Model._Document.Year</h2>
 
                     <a href="@Model._Document.ResourceUrl">
                         <img src="@Model._Document.ResourceUrl" class="img-display" alt="">
@@ -61,8 +61,18 @@
                     <p>
                         @Model._Document.Description
                     </p>
-                    <h4><strong>Resource Website</strong></h4>
-                    <a href="#">a link</a>
+                    <h4><strong>Courtesy Of</strong></h4>
+                    @if (Model._Document.InstitutionUrl != null)
+                    {
+                        <strong><a href="@Model._Document.InstitutionUrl" target="-blank">@Model._Document.SourceInstitution</a></strong>
+                    }
+                    else
+                    {
+                        <strong>
+                            <a href="#">@Model._Document.SourceInstitution</a>
+                        </strong>
+                    }
+
                 </div>
             </div>
 

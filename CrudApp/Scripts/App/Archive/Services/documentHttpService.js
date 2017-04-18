@@ -15,6 +15,7 @@
         // Build Service
         var service = {
             getDocumentById: _getDocumentById,
+            getNearbyDocuments: _getNearbyDocuments,
             getLatest: _getLatest,
             getMapByDocumentId: _getMapByDocumentId
         };
@@ -27,6 +28,25 @@
         function _getDocumentById(documentId) {
 
             var url = baseUrl + documentId;
+
+            var settings = {
+                method: "GET",
+                url: url
+            };
+
+            return $http(settings);
+        }
+
+
+        // .........................................................................................
+
+        function _getNearbyDocuments(latLng) {
+
+            // Pass latLng as URL param
+            var lat = latLng.lat;
+            var lng = latLng.lng;
+
+            var url = baseUrl.concat("nearby/?lat=", lat,"&lng=", lng);
 
             var settings = {
                 method: "GET",

@@ -41,7 +41,7 @@
 
 
 
-    <section id="3portfolio" class="featured-map-section">
+    <section id="featured-map" class="featured-map-section">
 
         <div class="container">
 
@@ -60,7 +60,8 @@
                     <h4 id="year">{{HmC.featuredMap.Year}}</h4>
                     <p id="credit"><em>{{HmC.featuredMap.Contributor}}</em> | Coutresy of <strong><a ng-href="{{HmC.featuredMap.InstitutionUrl}}" target="_blank">{{HmC.featuredMap.SourceInstitution}}</a></strong></p>
                     <p id="description">{{HmC.featuredMap.Description}}</p>
-                    <a href="~/Home/GoLocal" class="btn btn-border-theme-dark">Find More Like This</a>
+
+                    <a href="~/Home/GoLocal" class="btn btn-border-theme-dark">Find More Near You</a>
                 </div>
             </div>
         </div>
@@ -100,7 +101,7 @@
 
                                 <br>
 
-                                <a href="about.html">Find Out More</a>
+                                <a href="about.html" class="btn btn-border-theme-white">Find Out More</a>
 
                             </p>
 
@@ -176,9 +177,7 @@
 
                                 <div>
 
-                                    <h2><span>{{newbie.Title}} ({{newbie.Date}})</span></h2>
-
-                                    @* <p>{{newbie.Date}}</p>*@
+                                    <h2><span>{{newbie.Title}} ({{newbie.Year}})</span></h2>
 
                                 </div>
 

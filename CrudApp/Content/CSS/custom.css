@@ -61,6 +61,20 @@
   background-color: #1E59C5;
   color: #eee; }
 
+.btn-border-theme-white {
+  background-color: transparent;
+  border: 2px solid #eee;
+  color: #eee;
+  text-transform: uppercase;
+  border-radius: 0px;
+  -webkit-border-radius: 0px;
+  font-size: 20px; }
+
+.btn-border-theme-white:hover {
+  background-color: #0cbdaa;
+  color: #eee;
+  border-color: #0cbdaa; }
+
 /*End Utility*/
 /*Body*/
 body {
@@ -76,9 +90,10 @@ body .container-fluid {
   overflow: hidden; }
 
 .featured-map-section {
-  padding: 80px 0; }
-  .featured-map-section #year {
-    color: #1E59C5; }
+  padding: 80px 0;
+  /*#year{
+      color: $accentdark;
+  }*/ }
   .featured-map-section #credit {
     color: #555; }
   .featured-map-section #description {

@@ -13,20 +13,22 @@
     <link href="~/Content/Leaflet/leaflet.distortableimage.css" rel="stylesheet" />
 }
 <!-- Map -->
-<div class="map-title">
+<div ng-controller="mapController as MapC" ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
+    <div class="map-title">
 
-    <div class="map-title-overlay"></div>
+        <div class="map-title-overlay"></div>
 
-    <div class="container">
+        <div class="container">
 
-        <h1>@Model._Document.Title (@Model._Document.Date)</h1>
+            <h1>@Model._Document.Title (@Model._Document.Year)</h1>
+
+        </div>
 
     </div>
-
-</div>
-<div class="width-full">
-    <div class="row">
-        <div id="map" class="map-display col-md-12 col-sm-12"></div>
+    <div class="width-full">
+        <div class="row">
+            <div id="map" class="map-display col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1"></div>
+        </div>
     </div>
 </div>
 
@@ -40,34 +42,37 @@
     <script src="~/Scripts/leaflet/noMap.js"></script>
     <script src="~/Scripts/leaflet/tilesets.js"></script>
 
-    <script src="~/Scripts/services/project.services.Leaflet.js"></script>
+    <script src="~/Scripts/App/LeafletJS/Services/LeafletMapService.js"></script>
+    <script src="~/Scripts/App/Pages/Controllers/MapController.js"></script>
+
+    @*<script src="~/Scripts/services/project.services.Leaflet.js"></script>*@
 
     <script>
-        project.page.startUp = function () {
+        //project.page.startUp = function () {
 
-            // Get User's location
-            project.services.IP.getLocation(project.page.onGetLocationSuccess, project.page.onAjaxError);
+        //    // Get User's location
+        //    project.services.IP.getLocation(project.page.onGetLocationSuccess, project.page.onAjaxError);
 
-            $("body").find(".leaflet-image-layer").fadeOut();
-        };
+        //    $("body").find(".leaflet-image-layer").fadeOut();
+        //};
 
-        // .....................................................................................
-        // If user location retrieved successfully
-        project.page.onGetLocationSuccess = function (locationObject) {
-            // Centers display map on recieved latLng coordinates
-            var latLng = {
-                lat: locationObject.latitude,
-                lng: locationObject.longitude
-            };
+        //// .....................................................................................
+        //// If user location retrieved successfully
+        //project.page.onGetLocationSuccess = function (locationObject) {
+        //    // Centers display map on recieved latLng coordinates
+        //    var latLng = {
+        //        lat: locationObject.latitude,
+        //        lng: locationObject.longitude
+        //    };
 
-            project.services.Leaflet.editMap(latLng);
-        }
+        //    project.services.Leaflet.editMap(latLng);
+        //}
 
-        // .....................................................................................
+        //// .....................................................................................
 
-        project.page.onAjaxError = function (data) {
-            console.log("An error occured: ", data);
-        }
+        //project.page.onAjaxError = function (data) {
+        //    console.log("An error occured: ", data);
+        //}
 
     </script>
 }

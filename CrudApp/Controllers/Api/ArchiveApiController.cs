@@ -23,7 +23,7 @@ namespace CrudApp.Controllers.ApiControllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            DocumentDomain document = ArchiveService.GetDocumentById(archiveId);
+            DocumentDomain document = DocumentService.GetDocumentById(archiveId);
 
             var response = new ItemResponse<DocumentDomain> { Item = document };
 
@@ -55,7 +55,7 @@ namespace CrudApp.Controllers.ApiControllers
         [Route("map"), HttpPost]
         public HttpResponseMessage ContributeMap(MapRequest model)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
@@ -64,7 +64,7 @@ namespace CrudApp.Controllers.ApiControllers
             var response = new ItemResponse<int> { Item = num };
 
             return Request.CreateResponse(HttpStatusCode.OK, response);
-            
+
         }
 
 
@@ -90,6 +90,25 @@ namespace CrudApp.Controllers.ApiControllers
 
         // .........................................................................................
 
+        [Route("nearby"), HttpGet]
+        public HttpResponseMessage GetNearbyDocumetns([FromUri] LatLng location)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
+            }
+
+            List<DocumentDomain> docList = DocumentService.GetNearbyDocuments(location);
+
+            var response = new ItemsResponse<DocumentDomain> { Items = docList };
+
+            return Request.CreateResponse(HttpStatusCode.OK, response);
+        }
+
+
+
+        // .........................................................................................
+
         [Route("latest"), HttpGet]
         public HttpResponseMessage GetLatestDocuments()
         {
@@ -98,7 +117,7 @@ namespace CrudApp.Controllers.ApiControllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
 
-            List<DocumentDomain> documents = ArchiveService.GetLatestDocuments();
+            List<DocumentDomain> documents = DocumentService.GetLatestDocuments();
 
             var response = new ItemsResponse<DocumentDomain> { Items = documents };
 

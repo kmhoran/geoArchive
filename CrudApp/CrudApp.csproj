@@ -234,7 +234,7 @@
     <Compile Include="Models\ViewModels\BaseVm.cs" />
     <Compile Include="Models\ViewModels\RedirectResponseVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\ArchiveService.cs" />
+    <Compile Include="Services\DocumentService.cs" />
     <Compile Include="Services\BaseService.cs" />
     <Compile Include="Services\MapService.cs" />
     <Compile Include="Services\PictureService.cs" />
@@ -248,9 +248,11 @@
     <Content Include="Scripts\App\Archive\Services\mapHttpService.js" />
     <Content Include="Scripts\App\Archive\Services\pictureHttpService.js" />
     <Content Include="Scripts\App\Pages\Controllers\ContributeController.js" />
+    <Content Include="Scripts\App\Pages\Controllers\GoLocalController.js" />
     <Content Include="Scripts\App\Pages\Controllers\HomeController.js" />
     <Content Include="Scripts\App\IPLocation\Services\IpLocationService.js" />
     <Content Include="Scripts\App\LeafletJS\Services\LeafletMapService.js" />
+    <Content Include="Scripts\App\Pages\Controllers\MapController.js" />
     <Content Include="Scripts\App\Pages\Controllers\SelectCoordinatesModalController.js" />
     <Content Include="Scripts\App\Pages\Templates\selectCoordinatesModal.html" />
     <Content Include="Scripts\bower_components\angular-bootstrap\.gitignore" />

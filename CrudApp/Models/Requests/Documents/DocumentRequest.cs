@@ -24,11 +24,13 @@ namespace CrudApp.Models.Requests.Documents
         public int Year { get; set; }
     }
 
-    public class LatLng
-    {
-        public float Lat { get; set; }
 
-        public float Lng { get; set; }
-    }
+    //- No need to duplicate this model
+    //public class LatLng
+    //{
+    //    public float Lat { get; set; }
+
+    //    public float Lng { get; set; }
+    //}
 
 }

@@ -17,7 +17,7 @@
 
 
 
-<div class="content">
+<div class="content" ng-controller="goLocalController as GLC">
 
 
 
@@ -26,7 +26,7 @@
         <div class="row">
 
             <div class="col-md-12">
-                <h2>Your City</h2>
+                <h2>{{GLC.location.city}}</h2>
 
                 <ul class="portfolio-filters">
 
@@ -36,42 +36,45 @@
 
                     <li class="filter" data-filter="photos"><strong>Photos</strong></li>
 
-                    <li class="filter" data-filter="video"><strong>Video</strong></li>
+                    @*<li class="filter" data-filter="video"><strong>Video</strong></li>*@
 
                 </ul>
 
                 <div id="grid" class="row grid">
 
-                    <div class="mix maps col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block">
+                    <div ng-repeat="doc in GLC.nearbyDocs" ng-cloak>
+                        <div class="mix col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block" ng-class="{'maps':doc.TypeId == 1, 'photos':doc.TypeId == 2 }">
 
-                        <figure class="effect-lily">
+                            <figure class="effect-lily">
 
-                            <div class="_image-short">
+                                <div class="_image-short">
 
-                                <img src="~/Content/Theme/Images/media/LOC_LACounty_1888.jpg" alt="" class="img-responsive">
-
-                            </div>
-
-                            <figcaption>
-
-                                <div>
-
-                                    <h3><strong>LA County</strong></h3>
-
-                                    <p><stong>1888</stong></p>
+                                    <img ng-src="{{doc.ResourceUrl}}" alt="" class="img-responsive">
 
                                 </div>
 
-                                <a href="~/home/detail/0">View more</a>
+                                <figcaption>
 
-                            </figcaption>
+                                    <div>
 
-                        </figure>
+                                        @*<h3><strong>{{doc.Title}}</strong></h3>
+
+                                        <p><stong>{{doc.Year}}</stong></p>*@
+                                        <h2><span>{{doc.Title}} ({{doc.Year}})</span></h2>
+
+                                    </div>
+
+                                    <a ng-href="~/home/detail/{{doc.DocumentId}}">View more</a>
+
+                                </figcaption>
+
+                            </figure>
 
 
+                        </div>
                     </div><!-- archive item -->
 
-                    <div class="mix photos col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block">
+                   @* <div class="mix photos col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block">
 
                         <figure class="effect-lily">
 
@@ -100,7 +103,7 @@
 
                     </div><!--archive item -->
 
-                    <div class="mix maps col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block">
+                    @*<div class="mix maps col-md-4 col-sm-6 margin-btm-40 mix_all" style="display:inline-block">
 
                         <figure class="effect-lily">
 
@@ -305,7 +308,7 @@
 
 
 
-                    </div><!--archive item item -->
+                    </div><!--archive item item -->*@
 
                 </div><!--grid-->
 
@@ -322,14 +325,11 @@
 <script src="~/Scripts/Theme/jquery.flexslider-min.js"></script>
 <script src="~/Scripts/Theme/jquery.mixitup.min.js"></script>
 
+<script src="~/Scripts/App/Pages/Controllers/GoLocalController.js"></script>
+
 <script type="text/javascript">
-
         /*========portfolio mix====*/
-
         $('#grid').mixitup();
-
-
-
 </script>
     
     }
