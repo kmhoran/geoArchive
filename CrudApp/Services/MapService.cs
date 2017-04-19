@@ -11,6 +11,12 @@ namespace CrudApp.Services
     {
         public static MapDomain GetMapByDocumentId(int documentId)
         {
+            if (documentId == 2)
+            {
+                return null;
+            }
+
+
             var bounds = new Models.Documents.Bounds
             {
                 NorthEast = new Models.Documents.LatLng { Lat = 33.37526554349371f, Lng = -118.14491271972658f },

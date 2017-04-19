@@ -22,13 +22,13 @@
             console.log("this is the passed vm: ", baseModel);
 
             var options = {
-
+                bounds: vm.baseModel.Bounds,
+                rotate: vm.baseModel.Rotation 
             }
 
-            vm.$leafletMapService.display
+            vm.$leafletMapService.displayMap(options, vm.baseModel.ResourceUrl);
         }
 
-        console.log("this is th vm: ", vm.baseModel);
         // /////////////////////////////////////////////////////////////////////////////////////////
 
 

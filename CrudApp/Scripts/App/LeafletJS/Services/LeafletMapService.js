@@ -176,7 +176,7 @@
             var tilesets = _injectTileSets();
 
             // Bounds should be an array of "double" values.
-            var bounds = L.latLngBounds(options.bounds);
+            var bounds = _convertBounds(options.bounds);
             var center = bounds.getCenter();
 
             // This assumes the HTML map element has id='map'.
@@ -323,6 +323,15 @@
             var initialBounds = L.latLngBounds([(initialLatLng.lat + 1), (initialLatLng.lng - 1)], [(initialLatLng.lat - 1), (initialLatLng.lng + 1)]);
 
             return initialBounds;
+        }
+
+
+        // .........................................................................................
+
+        function _convertBounds (jsBounds) {
+            var leafletBounds = L.latLngBounds([jsBounds.NorthEast.Lat, jsBounds.NorthEast.Lng], [jsBounds.SouthWest.Lat, jsBounds.SouthWest.Lng]);
+
+            return leafletBounds;
         }
 
 

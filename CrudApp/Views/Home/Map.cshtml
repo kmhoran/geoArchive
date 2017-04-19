@@ -1,4 +1,4 @@
-﻿@model CrudApp.Models.ViewModels.BaseVm
+﻿@model CrudApp.Models.ViewModels.BaseVm<CrudApp.Models.Documents.MapDomain>
 
 @{
     Layout = "~/Views/Shared/_StormLayout1.cshtml";
@@ -13,22 +13,24 @@
     <link href="~/Content/Leaflet/leaflet.distortableimage.css" rel="stylesheet" />
 }
 <!-- Map -->
-<div ng-controller="mapController as MapC" ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model))">
+<div ng-controller="mapController as MapC" ng-init="init(@Newtonsoft.Json.JsonConvert.SerializeObject(Model._Document))">
     <div class="map-title">
 
         <div class="map-title-overlay"></div>
 
         <div class="container">
-
-            <h1>@Model._Document.Title (@Model._Document.Year)</h1>
-
         </div>
 
     </div>
     <div class="width-full">
         <div class="row">
+
+            <a href="/home/detail/@Model._Document.DocumentId">
+                <h1 id="doc-title" class="text-center">@Model._Document.Title (@Model._Document.Year)</h1>
+            </a>
             <div id="map" class="map-display col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1"></div>
         </div>
+        <br />
     </div>
 </div>
 
@@ -37,42 +39,14 @@
 
 @section Scripts{
     <script src="~/Scripts/leaflet/leaflet-src.js"></script>
+    <script src="~/Scripts/leaflet/leaflet.rotateimage.js"></script>
     <script src="~/Scripts/leaflet/leaflet.toolbar.js"></script>
+    <script src="~/Scripts/leaflet/opacitySlider.js"></script>
 
     <script src="~/Scripts/leaflet/noMap.js"></script>
     <script src="~/Scripts/leaflet/tilesets.js"></script>
 
     <script src="~/Scripts/App/LeafletJS/Services/LeafletMapService.js"></script>
     <script src="~/Scripts/App/Pages/Controllers/MapController.js"></script>
-
-    @*<script src="~/Scripts/services/project.services.Leaflet.js"></script>*@
-
-    <script>
-        //project.page.startUp = function () {
-
-        //    // Get User's location
-        //    project.services.IP.getLocation(project.page.onGetLocationSuccess, project.page.onAjaxError);
-
-        //    $("body").find(".leaflet-image-layer").fadeOut();
-        //};
-
-        //// .....................................................................................
-        //// If user location retrieved successfully
-        //project.page.onGetLocationSuccess = function (locationObject) {
-        //    // Centers display map on recieved latLng coordinates
-        //    var latLng = {
-        //        lat: locationObject.latitude,
-        //        lng: locationObject.longitude
-        //    };
-
-        //    project.services.Leaflet.editMap(latLng);
-        //}
-
-        //// .....................................................................................
-
-        //project.page.onAjaxError = function (data) {
-        //    console.log("An error occured: ", data);
-        //}
-
-    </script>
+   
 }

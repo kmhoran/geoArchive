@@ -53,17 +53,11 @@
 
                 // Use data to populate featured map.
                 var options = {
-                    bounds: [
-                        [vm.featuredMap.Bounds.NorthEast.Lat,
-                        vm.featuredMap.Bounds.NorthEast.Lng, ],
-                        [vm.featuredMap.Bounds.SouthWest.Lat,
-                        vm.featuredMap.Bounds.SouthWest.Lng, ]
-                    ],
-
+                    bounds: vm.featuredMap.Bounds,
                     rotate: vm.featuredMap.Rotation
                 };
 
-
+                // TODO FIXME DELETE
                 console.log("featured map: ", vm.featuredMap);
                 var latLng = vm.featuredMap.Bounds.NorthEast;
 

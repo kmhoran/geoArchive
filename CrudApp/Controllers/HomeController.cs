@@ -1,10 +1,12 @@
-﻿using CrudApp.Models.ViewModels;
+﻿using CrudApp.Models.Documents;
+using CrudApp.Models.ViewModels;
 using CrudApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 
 namespace CrudApp.Controllers
 {
@@ -19,10 +21,10 @@ namespace CrudApp.Controllers
             return View();
         }
 
-        [Route("detail/{id:int")]
+        [Route("detail/{id:int}")]
         public ActionResult Detail(int id)
         {
-            BaseVm vm = new BaseVm { _Document = DocumentService.GetDocumentById(id) };
+            BaseVm<DocumentDomain> vm = new BaseVm<DocumentDomain> { _Document = DocumentService.GetDocumentById(id) };
 
             return View(vm);
         }
@@ -31,13 +33,14 @@ namespace CrudApp.Controllers
         [Route("map/{id:int}")]
         public ActionResult Map(int id)
         {
-            BaseVm vm = new BaseVm { _Document = DocumentService.GetDocumentById(id) };
-            if (vm._Document.TypeId == Enums.DocumentType.Map)
+            BaseVm<MapDomain> vm = new BaseVm<MapDomain> { _Document = MapService.GetMapByDocumentId(id) };
+            if (vm._Document == null || vm._Document.TypeId != Enums.DocumentType.Map)
             {
-                return View(vm);
+                // If not a valid map, redirect to document detail page.
+                return RedirectToAction("Detail", "Home", new RouteValueDictionary(new { Id = id }));
             }
 
-            return View("Detail.cshtml", vm);
+            return View(vm);
 
         }
 

@@ -1,4 +1,4 @@
-﻿@model CrudApp.Models.ViewModels.BaseVm
+﻿@model CrudApp.Models.ViewModels.BaseVm<CrudApp.Models.Documents.DocumentDomain>
 @{
     Layout = "~/Views/Shared/_StormLayout1.cshtml";
 }
@@ -52,7 +52,7 @@
                 <div class="item-desctiption">
                     @if (Model._Document.TypeId == CrudApp.Enums.DocumentType.Map)
                     {
-                        <a href="#"><span class="fa fa-map"></span>  View on Map</a>
+                        <a href="/home/map/@Model._Document.DocumentId"><span class="fa fa-map"></span>  View on Map</a>
                     }
 
 

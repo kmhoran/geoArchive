@@ -7,8 +7,8 @@ using System.Xml.Linq;
 
 namespace CrudApp.Models.ViewModels
 {
-    public class BaseVm
+    public class BaseVm<T> where T : DocumentDomain
     {
-        public DocumentDomain _Document {get; set;}
+        public T _Document {get; set;}
     }
 }
